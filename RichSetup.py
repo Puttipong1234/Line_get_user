@@ -73,8 +73,9 @@ if __name__ == '__main__':
             "height": 726
         },
         "action": {
-            "type": "uri",
-            "uri": "http://uncle-engineer.com/"
+            "type": "postback",
+            "text": "",
+            "data": "10hrvideo"
         }
         },
         {

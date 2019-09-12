@@ -10,7 +10,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent
+    MessageEvent, TextMessage, TextSendMessage, FollowEvent , PostbackEvent
 )
 
 
@@ -59,6 +59,18 @@ def GetUserData(event):
         TextSendMessage(text= 'สวัสดีคุณ {} ยินดีต้อนรับสู่บริการหลังการอบรม เราได้ทำการบันทึกข้อมูลของท่านเข้าสู่ฐานข้อมูล ท่านสามารถรับชมวิดีโอ 10 ชั่วโมงพร้อมสอบถามข้อสงสัยได้ในห้องแชทนี้'.format(disname))
     )
 
-    line_bot_api.link_rich_menu_to_user(uid,'richmenu-d864976be7c17d82b781f214cdd4ac16')
+    line_bot_api.link_rich_menu_to_user(uid,'richmenu-4cbfaa427a4db188081ae974b1ca5f2f')
 
-    return 'OK'
+
+from .FlexTemplate import *
+
+@handler.add(PostbackEvent)
+def Postback(event):
+    # print(event.postback.as_json_dict()['data'])
+    if str(event.postback.as_json_dict()['data']) == '10hrvideo':
+        replytoken = event.reply_token
+        data = SetMenuMessage_Object(flexdata)
+        send_flex(replytoken,data,channel_access_token)
+
+
+
