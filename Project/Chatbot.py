@@ -44,7 +44,7 @@ def callback():
 
 
 from .FireStore import User
-
+from .FlexTemplate import *
 @handler.add(FollowEvent)
 def GetUserData(event):
 
@@ -54,15 +54,13 @@ def GetUserData(event):
     user = User(disname,uid)
     user.sendData()
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text= 'สวัสดีคุณ {} ยินดีต้อนรับสู่บริการหลังการอบรม เราได้ทำการบันทึกข้อมูลของท่านเข้าสู่ฐานข้อมูล ท่านสามารถรับชมวิดีโอ 10 ชั่วโมงพร้อมสอบถามข้อสงสัยได้ในห้องแชทนี้'.format(disname))
-    )
+    replytoken = event.reply_token
+    data = SetMenuMessage_Object(flexdata_regis)
+    print(data)
+    send_flex(replytoken,data,channel_access_token)
 
     line_bot_api.link_rich_menu_to_user(uid,'richmenu-4cbfaa427a4db188081ae974b1ca5f2f')
 
-
-from .FlexTemplate import *
 
 @handler.add(PostbackEvent)
 def Postback(event):
@@ -71,6 +69,8 @@ def Postback(event):
         replytoken = event.reply_token
         data = SetMenuMessage_Object(flexdata)
         send_flex(replytoken,data,channel_access_token)
+
+        print(data)
 
 
 
