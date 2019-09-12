@@ -40,17 +40,13 @@ def callback():
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
-
     return 'OK'
+
 
 from .FireStore import User
 
 @handler.add(FollowEvent)
 def GetUserData(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text='Thank for Registration account')
-    )
 
     uid = event.source.user_id
     disname = line_bot_api.get_profile(user_id=uid).display_name
@@ -58,3 +54,11 @@ def GetUserData(event):
     user = User(disname,uid)
     user.sendData()
 
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text= 'สวัสดีคุณ {} ยินดีต้อนรับสู่บริการหลังการอบรม เราได้ทำการบันทึกข้อมูลของท่านเข้าสู่ฐานข้อมูล ท่านสามารถรับชมวิดีโอ 10 ชั่วโมงพร้อมสอบถามข้อสงสัยได้ในห้องแชทนี้'.format(disname))
+    )
+
+    line_bot_api.link_rich_menu_to_user(uid,'richmenu-d864976be7c17d82b781f214cdd4ac16')
+
+    return 'OK'
