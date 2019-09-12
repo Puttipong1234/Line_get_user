@@ -46,7 +46,7 @@ def callback():
 from .FireStore import User
 from .FlexTemplate import *
 @handler.add(FollowEvent)
-def GetUserData(event):
+def line_register(event):
 
     uid = event.source.user_id
     disname = line_bot_api.get_profile(user_id=uid).display_name
@@ -56,7 +56,6 @@ def GetUserData(event):
 
     replytoken = event.reply_token
     data = SetMenuMessage_Object(flexdata_regis)
-    print(data)
     send_flex(replytoken,data,channel_access_token)
 
     line_bot_api.link_rich_menu_to_user(uid,'richmenu-4cbfaa427a4db188081ae974b1ca5f2f')
@@ -73,4 +72,12 @@ def Postback(event):
         print(data)
 
 
+@handler.add(MessageEvent , message = TextMessage)
+def GetUserData(event):
+    if 'ยืนยันการลงทะเบียน' in event.message.text:
+        try:
+            data = event.message.text
+            print(data)
+        except:
+            print('error')
 

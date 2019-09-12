@@ -213,9 +213,6 @@ flexdata_regis = {
         "action": {
           "type": "uri",
           "uri": "line://app/1586284841-pL1E19l1",
-          "altUri": {
-            "desktop": "line://app/1586284841-pL1E19l1"
-          },
           "label": "regis"
         }
       },
