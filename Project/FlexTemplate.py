@@ -212,9 +212,9 @@ flexdata_regis = {
         "cornerRadius": "5px",
         "action": {
           "type": "uri",
-          "uri": "http://linecorp.com/",
+          "uri": "line://app/1586284841-pL1E19l1",
           "altUri": {
-            "desktop": "http://linecorp.com/"
+            "desktop": "line://app/1586284841-pL1E19l1"
           },
           "label": "regis"
         }
