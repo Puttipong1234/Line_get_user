@@ -5,7 +5,7 @@ class FireDB():
     url = 'https://fresh-base-246509.firebaseio.com/'
     db = firebase.FirebaseApplication(url)
 
-    def __init__(self,table_name,name,_id):
+    def __init__(self,table_name,name = None,_id = None):
         self.table_name = table_name
         self.name = name
         self._id = _id
@@ -31,7 +31,7 @@ class FireDB():
 #     User('uncle','book2','12348586789').sendData()
 
 class User(FireDB):
-    def __init__(self, table_name,name,_id,session):
+    def __init__(self, table_name,name,_id,session = None):
         super().__init__(table_name,name,_id)
         self.session = session
 
