@@ -141,7 +141,11 @@ flexdata = {
   }
 }
 
-flexdata_regis = {
+flexdata_regis = [{
+            "type":"text",
+            "text":"ยินดีต้อนรับเข้าสู่คอสเรียน LineChatbot With Python กรุณาลงทะเบียนเพื่อรับข้อมูลข่าวสาร"
+        },
+  {
   "type": "flex",
   "altText": "Flex Message",
   "contents": 
@@ -283,13 +287,14 @@ flexdata_regis = {
     }
   }
 }
-}
+}]
 
 import json , requests
-
+### list of message data
 def SetMenuMessage_Object(Message_data,Quick_Reply = False):
     file_data = {"replyToken":'', "messages": []}
-    data = file_data['messages'].append(Message_data)
+    for i in Message_data:
+      data = file_data['messages'].append(i)
     return file_data
 
 def send_flex(reply_token,file_data,bot_access_key):
