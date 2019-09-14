@@ -1,5 +1,5 @@
 
-flexdata = {
+flexdata = [{
   "type": "flex",
   "altText": "Flex Message",
   "contents": {
@@ -139,7 +139,7 @@ flexdata = {
       }
     ]
   }
-}
+}]
 
 flexdata_regis = [{
             "type":"text",
@@ -292,9 +292,8 @@ flexdata_regis = [{
 import json , requests
 ### list of message data
 def SetMenuMessage_Object(Message_data,Quick_Reply = False):
-    file_data = {"replyToken":'', "messages": []}
-    for i in Message_data:
-      data = file_data['messages'].append(i)
+    file_data = {"replyToken":'', "messages": ''}
+    data = file_data['messages'] = Message_data
     return file_data
 
 def send_flex(reply_token,file_data,bot_access_key):

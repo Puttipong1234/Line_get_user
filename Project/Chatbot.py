@@ -51,8 +51,8 @@ def line_register(event):
     uid = event.source.user_id
     disname = line_bot_api.get_profile(user_id=uid).display_name
 
-    user = User(disname,uid)
-    user.sendData()
+    user = User('RegisUncle_01',disname,uid,session = 'none')
+    user.update()
 
     replytoken = event.reply_token
     data = SetMenuMessage_Object(flexdata_regis)
@@ -75,9 +75,16 @@ def Postback(event):
 @handler.add(MessageEvent , message = TextMessage)
 def GetUserData(event):
     if 'ยืนยันการลงทะเบียน' in event.message.text:
-        try:
-            data = event.message.text
-            print(data)
-        except:
-            print('error')
+        data = event.message.text
 
+        uid = event.source.user_id
+        disname = line_bot_api.get_profile(user_id=uid).display_name
+
+        text_01 = TextSendMessage(text='User_id : {} ท่านได้ทำการลงทะเบียนสำเร็จ'.format(uid))
+        text_02 = TextSendMessage(text='ขอบคุณ คุณ {} ที่ใช้บริการ UncleEngineer'.format(disname))
+        line_bot_api.reply_message(reply_token = event.reply_token,messages=[text_01,text_02])
+
+        user = User('RegisUncle_01',disname,uid,session = data)
+        user.update()
+
+        return 'OK'
