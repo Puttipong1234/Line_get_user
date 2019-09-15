@@ -6,9 +6,9 @@ import pprint
 def GetBxPrice():
     data = requests.get('https://bx.in.th/api/').json()
 
-    pp = pprint.PrettyPrinter(indent=3)
+    # pp = pprint.PrettyPrinter(indent=3)
 
-    pp.pprint(data)
+    # pp.pprint(data)
     result = []
     for key in list(data.keys())[0:5]:
         prim_name = data[key]['primary_currency']
@@ -28,4 +28,6 @@ def GetBxPrice():
     return result
 
 
-
+# if __name__ == '__main__':
+#     print(GetBxPrice())
+    
